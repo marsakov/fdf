@@ -26,7 +26,7 @@ int		main(int argc, char **argv)
 	if ((size = validation(argv[1], 0, 0, "")) != NULL)
 	{
 		printf("validation OK | %d x %d\n", size[0], size[1]);
-		fdf = writer(argv[1], 0, 0, fmin(2000 / size[0] / 2, size[1] / 1200 / 2)); //size[0] * size[1]);//fmin(2000 / size[0] / 2, size[1] / 1200 / 2));
+		fdf = writer(argv[1], 0, 0, size[0] * size[1]);//fmin(2000 / size[0] / 2, size[1] / 1200 / 2));
 		wnd = create_wind(fdf, size);
 	}
 	else
