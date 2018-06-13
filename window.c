@@ -87,7 +87,7 @@ t_window	*create_wind(t_fdf *fdf, int *size)
 	wnd->b = 0;
 	wnd->c = 0;
 	drawer(wnd);
-	mlx_key_hook(wnd->win_ptr, deal_key, wnd);
+	mlx_hook(wnd->win_ptr, deal_key, wnd);
 	mlx_loop(wnd->mlx_ptr);
 	return (wnd);
 }
