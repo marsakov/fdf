@@ -16,6 +16,7 @@ int		main(int argc, char **argv)
 {
 	int			*size;
 	t_fdf		*fdf;
+	t_fdf *tmp;
 	t_window	*wnd;
 
 	if (argc != 2)
@@ -26,7 +27,13 @@ int		main(int argc, char **argv)
 	if ((size = validation(argv[1], 0, 0, "")) != NULL)
 	{
 		printf("validation OK | %d x %d\n", size[0], size[1]);
-		fdf = writer(argv[1], 0, 0, size[0] * size[1]);//fmin(2000 / size[0] / 2, size[1] / 1200 / 2));
+		fdf = writer(argv[1], 0, 0);//, fmin(WIDTH / (size[0] + 1), HEIGHT / (size[1] + 1)));
+		// tmp = fdf;
+		// while (tmp)
+		// {
+		// 	printf(" z = %f \n", tmp->z);
+		// 	tmp = tmp->next;
+		// }
 		wnd = create_wind(fdf, size);
 	}
 	else

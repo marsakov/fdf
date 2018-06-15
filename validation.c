@@ -41,20 +41,25 @@ int		*validation(char *name, int i, int fd, char *str)
 	return (!size[0] || !size[1]) ? (0) : (size);
 }
 
-t_fdf	*create_coordinate(double x, double y, double z, double k)
+t_fdf	*create_coordinate(double x, double y, double z)
 {
 	t_fdf *elem;
 
 	elem = (t_fdf*)malloc(sizeof(t_fdf));
+	elem->x_str = x;
+	elem->y_str = y;
+	elem->z_str = z;
 	elem->x = x;
 	elem->y = y;
 	elem->z = z;
-	elem->k = k;
+	elem->x_r = x;
+	elem->y_r = y;
+	elem->z_r = z;
 	elem->next = NULL;
 	return (elem);
 }
 
-t_fdf	*writer(char *name, int fd, int y, int k)
+t_fdf	*writer(char *name, int fd, int y)
 {
 	int		x;
 	char	**split;
@@ -67,13 +72,13 @@ t_fdf	*writer(char *name, int fd, int y, int k)
 		split = ft_strsplit(name, ' ');
 		if (y == 1 && ++x == 1)
 		{
-			fdf = create_coordinate(k * (double)x, k * (double)y, ft_atoi(split[x - 1]), k);
+			fdf = create_coordinate((double)x, (double)y, ft_atoi(split[x - 1]));
 			free(split[x - 1]);
 			begin = fdf;
 		}
 		while(split[++x - 1])
 		{
-			fdf->next = create_coordinate(k * (double)x, k * (double)y, ft_atoi(split[x - 1]), k);
+			fdf->next = create_coordinate((double)x, (double)y, ft_atoi(split[x - 1]));
 			fdf = fdf->next;
 			free(split[x - 1]);
 		}

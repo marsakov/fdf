@@ -12,42 +12,18 @@
 
 #include "fdf.h"
 
-void	mult_coordinate(t_fdf *fdf, int op)
+void	change(t_window *wnd)
 {
 	t_fdf *tmp;
 
-	tmp = fdf;
-	while (tmp && tmp->x > 20)
-	{
-		if (op)
-		{
-			tmp->x *= 1.025;// - tmp->k / n;
-			tmp->y *= 1.025;// - tmp->k / n;
-		}
-		else
-		{
-			tmp->x /= 1.025;// - tmp->k / n;
-			tmp->y /= 1.025;// - tmp->k / n;
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	share_coordinate(t_fdf *fdf, int value, int op)
-{
-	t_fdf *tmp;
-
-	tmp = fdf;
+	tmp = wnd->fdf;
 	while (tmp)
 	{
-		if (value)
-			tmp->x = (op) ? tmp->x + 5 : tmp->x - 5;
-		else
-			tmp->y = (op) ? tmp->y + 5 : tmp->y - 5;
+		tmp->x = ((WIDTH / 2) + (tmp->x_r - wnd->x_sr) * wnd->k) + wnd->sdvig_x;
+		tmp->y = ((HEIGHT / 2) + (tmp->y_r - wnd->y_sr) * wnd->k) + wnd->sdvig_y;
 		tmp = tmp->next;
 	}
 }
-
 
 void	rotate_coordinate(t_window *wnd, int value, int op)
 {
@@ -65,18 +41,18 @@ void	rotate_coordinate(t_window *wnd, int value, int op)
 		wnd->c = (op) ? wnd->c + 0.1 : wnd->c - 0.1;
 	while (p)
 	{
-		tx = p->x;
-		ty = p->y;
-		tz = p->z;
-		p->y = ty * cos(wnd->a) + tz * -sin(wnd->a);
-		p->z = ty * sin(wnd->a) + tz * cos(wnd->a);
-		tz = p->z;
-		p->x = tx * cos(wnd->b) + tz * sin(wnd->b);
-		p->z = tx * -sin(wnd->b) + tz * cos(wnd->b);
-		ty = p->y;
-		tx = p->x;
-		p->x = tx * cos(wnd->c) + ty * -sin(wnd->c);
-		p->y = tx * sin(wnd->c) + ty * cos(wnd->c);
+		tx = p->x_str;
+		ty = p->y_str;
+		tz = p->z_str;
+		p->y_r = ty * cos(wnd->a) + tz * -sin(wnd->a);
+		p->z_r = ty * sin(wnd->a) + tz * cos(wnd->a);
+		tz = p->z_r;
+		p->x_r = tx * cos(wnd->b) + tz * sin(wnd->b);
+		p->z_r = tx * -sin(wnd->b) + tz * cos(wnd->b);
+		ty = p->y_r;
+		tx = p->x_r;
+		p->x_r = tx * cos(wnd->c) + ty * -sin(wnd->c);
+		p->y_r = tx * sin(wnd->c) + ty * cos(wnd->c);
 		p = p->next;
 	}
 }
