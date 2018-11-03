@@ -18,7 +18,7 @@ Controls are show in the side menu
 
 ## Compilation and usage
 
-	git lone https://github.com/marsakov/fdf.git
+	git clone https://github.com/marsakov/fdf.git
 	cd fdf
 	make
 
