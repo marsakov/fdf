@@ -28,5 +28,10 @@ Run:
 ```
 Some maps are given in the repository. For example :
 		
-		./fdf maps/42.fdf
+	./fdf maps/42.fdf
 
+
+![Image alt](https://github.com/marsakov/fdf/raw/master/img/start.png)
+![Image alt](https://github.com/marsakov/fdf/raw/master/img/end.png)
+![Image alt](https://github.com/marsakov/fdf/raw/master/img/game.png)
+![Image alt](https://github.com/marsakov/fdf/raw/master/img/win.png)
